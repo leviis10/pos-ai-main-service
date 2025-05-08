@@ -28,6 +28,7 @@ public class UpdateProductResponse {
     private Double sellingPrice;
 
     private String categoryName;
+    private String productTypeName;
 
     private LocalDateTime createdAt;
 
@@ -45,7 +46,8 @@ public class UpdateProductResponse {
             .initialPrice(product.getInitialPrice())
             .sellingPrice(product.getSellingPrice())
             .categoryName(product.getCategory().getName())
-            .createdAt(product.getCreatedAt())
+                .productTypeName(product.getType().getName())
+                .createdAt(product.getCreatedAt())
             .updatedAt(product.getUpdatedAt())
             .build();
     }

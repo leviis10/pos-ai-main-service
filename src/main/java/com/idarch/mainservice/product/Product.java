@@ -7,6 +7,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.idarch.mainservice.category.Category;
+import com.idarch.mainservice.type.Type;
+
 import com.idarch.mainservice.invoice.invoicedetail.InvoiceDetail;
 
 import jakarta.persistence.Entity;
@@ -46,6 +48,9 @@ public class Product {
     private Category category;
 
     private String imageUrl;
+    @ManyToOne
+    @JoinColumn(name = "type_id")
+    private Type type;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

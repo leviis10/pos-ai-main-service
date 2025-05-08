@@ -1,0 +1,33 @@
+package com.idarch.mainservice.type.dto.response;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.idarch.mainservice.type.Type;
+import com.idarch.mainservice.type.Type;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.NoSuchElementException;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Builder
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class GetTypeResponse {
+    private Long id;
+
+    private String name;
+
+    public static GetTypeResponse fromEntity(Type type) {
+        if (type == null) {
+            throw new NoSuchElementException();
+        }
+
+        return GetTypeResponse.builder()
+            .id(type.getId())
+            .name(type.getName())
+            .build();
+    }
+}

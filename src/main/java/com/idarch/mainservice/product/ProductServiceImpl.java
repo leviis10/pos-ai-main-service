@@ -3,6 +3,9 @@ package com.idarch.mainservice.product;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import com.idarch.mainservice.type.Type;
+import com.idarch.mainservice.type.TypeService;
 import jakarta.persistence.criteria.Predicate;
 
 
@@ -20,11 +23,16 @@ import lombok.RequiredArgsConstructor;
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final CategoryService categoryService;
+    private final TypeService typeService;
 
     @Override
     public Product create(Long userId, CreateProductRequest request) {
         Category foundCategory = categoryService.findById(request.getCategoryId(), userId);
         if (foundCategory == null) {
+            return null;
+        }
+        Type foundType = typeService.findById((request.getProductTypeId()), userId);
+        if (foundType == null) {
             return null;
         }
 
@@ -34,6 +42,7 @@ public class ProductServiceImpl implements ProductService {
             .initialPrice(request.getInitialPrice())
             .sellingPrice(request.getSellingPrice())
             .category(foundCategory)
+                .type(foundType)
             .imageUrl(request.getImageUrl())
             .userId(userId)
             .build();

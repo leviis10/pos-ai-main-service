@@ -26,6 +26,8 @@ public class CreateProductRequest {
 
     @NotNull
     private Long categoryId;
+    private Long productTypeId;
+
 
     private String imageUrl;
 }

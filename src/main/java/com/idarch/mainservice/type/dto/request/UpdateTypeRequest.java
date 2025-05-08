@@ -1,4 +1,4 @@
-package com.idarch.mainservice.category.dto.request;
+package com.idarch.mainservice.type.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Builder
-public class CreateCategoryRequest {
+public class UpdateTypeRequest {
     @NotBlank
     private String name;
 }

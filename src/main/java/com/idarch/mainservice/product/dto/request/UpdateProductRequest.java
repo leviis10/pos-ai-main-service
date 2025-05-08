@@ -26,6 +26,7 @@ public class UpdateProductRequest {
 
     @NotNull
     private Long categoryId;
+    private String productTypeId;
 
     private String imageUrl;
 }

@@ -28,6 +28,7 @@ public class GetProductResponse {
     private Double sellingPrice;
 
     private String categoryName;
+    private String productTypeName;
 
     private LocalDateTime createdAt;
 
@@ -47,6 +48,7 @@ public class GetProductResponse {
             .initialPrice(product.getInitialPrice())
             .sellingPrice(product.getSellingPrice())
             .categoryName(product.getCategory().getName())
+                .productTypeName(product.getType().getName())
             .createdAt(product.getCreatedAt())
             .updatedAt(product.getUpdatedAt())
             .imageUrl(product.getImageUrl())
