@@ -8,7 +8,7 @@ import com.idarch.mainservice.product.dto.request.UpdateProductRequest;
 public interface ProductService {
     Product create(Long userId, CreateProductRequest request);
 
-    List<Product> findAll(Long userId);
+    List<Product> findAll(Long userId, String query, String category);
 
     Product findById(Long userId, Long id);
 

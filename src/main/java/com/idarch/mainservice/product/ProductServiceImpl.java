@@ -1,7 +1,10 @@
 package com.idarch.mainservice.product;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import jakarta.persistence.criteria.Predicate;
+
 
 import org.springframework.stereotype.Service;
 
@@ -38,9 +41,21 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> findAll(Long userId) {
-        return productRepository.findAllByUserId(userId);
+    public List<Product> findAll(Long userId, String query, String category) {
+        return productRepository.findAll((root, q, cb) -> {
+            List<Predicate> predicates = new ArrayList<>();
+            predicates.add(cb.equal(root.get("userId"), userId));
+            if (query != null && !query.isBlank()) {
+                predicates.add(cb.like(cb.lower(root.get("name")), "%" + query.toLowerCase() + "%"));
+            }
+            if (category != null && !category.isBlank()) {
+                predicates.add(cb.like(cb.lower(root.join("category").get("name")), "%" + category.toLowerCase() + "%"));
+            }
+
+            return cb.and(predicates.toArray(new Predicate[0]));
+        });
     }
+
 
     @Override
     public Product findById(Long userId, Long id) {

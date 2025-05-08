@@ -25,6 +25,8 @@ import com.idarch.mainservice.product.dto.response.GetProductResponse;
 import com.idarch.mainservice.product.dto.response.UpdateProductResponse;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RequiredArgsConstructor
 @RestController
@@ -44,14 +46,16 @@ public class ProductController {
 
     @GetMapping
     public ResponseEntity<SuccessResponse<List<GetProductResponse>>> findAll(
-        @RequestHeader(HeaderConstants.USER_ID) Long userId
+        @RequestHeader(HeaderConstants.USER_ID) Long userId,
+        @RequestParam(required = false) String query,
+        @RequestParam(required = false) String category
     ) {
-        List<Product> foundProducts = productService.findAll(userId);
+        List<Product> foundProducts = productService.findAll(userId, query, category);
         List<GetProductResponse> response = foundProducts.stream()
             .map(GetProductResponse::fromEntity)
             .toList();
         return BaseResponse.success(response);
-    };
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<SuccessResponse<GetProductResponse>> findById(
