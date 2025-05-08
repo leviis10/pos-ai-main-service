@@ -1,0 +1,41 @@
+# Ignore everything
+*
+
+# Allow files and directories needed for the build
+!src/
+!pom.xml
+!mvnw
+!mvnw.cmd
+!.mvn/
+
+# Allow specific files for Docker build
+!Dockerfile
+!*.jar
+!*.war
+
+# Exclude sensitive/unnecessary files
+.env
+.env.*
+**/.env
+**/.env.*
+**/*.env
+
+# Exclude unnecessary files within allowed directories
+**/.git
+**/.gitignore
+**/.gitmodules
+**/.project
+**/.settings
+**/.classpath
+**/.idea
+**/*.iml
+**/target
+**/build
+**/out
+**/logs
+**/*.log
+**/*.swp
+**/.DS_Store
+**/node_modules
+**/npm-debug.log
+**/Thumbs.db
