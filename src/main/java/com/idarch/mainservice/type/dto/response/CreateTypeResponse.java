@@ -1,7 +1,6 @@
 package com.idarch.mainservice.type.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.idarch.mainservice.category.Category;
 import com.idarch.mainservice.type.Type;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
